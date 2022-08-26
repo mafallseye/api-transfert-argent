@@ -57,5 +57,19 @@ def handle_500_error(_error):
 
 
 if __name__ == '__main__':
- APP.run(debug=True, port=33507)
-  
+
+    PARSER = argparse.ArgumentParser(
+        description="Seans-Python-Flask-REST-Boilerplate")
+
+    PARSER.add_argument('--debug', action='store_true',
+                        help="Use flask debug/dev mode with file change reloading")
+    ARGS = PARSER.parse_args()
+
+    PORT = int(os.environ.get('PORT', 5000))
+
+    if ARGS.debug:
+        print("Running in debug mode")
+        CORS = CORS(APP)
+        APP.run(host='0.0.0.0', port=PORT, debug=True)
+    else:
+        APP.run(host='0.0.0.0', port=PORT, debug=False)
