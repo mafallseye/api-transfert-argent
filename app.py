@@ -65,11 +65,11 @@ if __name__ == '__main__':
                         help="Use flask debug/dev mode with file change reloading")
     ARGS = PARSER.parse_args()
 
-    PORT = int(os.environ.get('PORT', 5000))
+    PORT = int(os.environ.get('PORT', 33507))
 
     if ARGS.debug:
         print("Running in debug mode")
         CORS = CORS(APP)
-        APP.run(host='0.0.0.0', port=PORT, debug=True)
+        APP.run(debug=True, port=33507, debug=True)
     else:
-        APP.run(host='0.0.0.0', port=PORT, debug=False)
+        APP.run(debug=True, port=33507, debug=False)
