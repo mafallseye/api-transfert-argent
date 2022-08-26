@@ -1,0 +1,287 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "sean",
+    "version": "1.0.0",
+    "title": "Seans-Python3-Flask-Rest-Boilerplate",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Register Request",
+      "description": "API for requesting and return register requests"
+    }
+  ],
+  "paths": {
+    "/request": {
+      "get": {
+        "tags": ["register Request"],
+        "summary": "Returns registerRequests",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/registerRequests"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["register Request"],
+        "summary": "Create a new register request system",
+        "requestBody": {
+          "description": "register Request Post Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/registerRequestPostBody"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": ["register Request"],
+        "summary": "Create a new register request system",
+        "requestBody": {
+          "description": "register Request Post Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/registersRequestPostBody"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    },
+    "/request/{_id}": {
+      "parameters": [
+        {
+          "name": "_id",
+          "in": "path",
+          "required": true,
+          "description": "ID of the cat that we want to match",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["register Request"],
+        "summary": "Get register request with given ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "description": "register Request id",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/registerRequest"
+            }
+          },
+          "400": {
+            "description": "Failed. Misunderstood Request."
+          },
+          "404": {
+            "description": "Failed. register request not found."
+          }
+        }
+      },
+      "put": {
+        "summary": "edit a register request by ID",
+        "tags": ["register Request"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "description": "register Request id",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "register Request Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/registerRequest"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/registerRequest"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete register Request by ID",
+        "tags": ["register Request"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "_id",
+            "required": true,
+            "description": "register Request Id",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          },
+          "400": {
+            "description": "Failed. Misunderstood Request."
+          },
+          "404": {
+            "description": "Failed. Book Request not found."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "_id": {
+        "properties": {
+          "uuid": {
+            "type": "string"
+          }
+        }
+      },
+      "registerRequestPostBody": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      },
+      "registersRequestPostBody": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "string"
+          },
+          "nom": {
+            "type": "string",
+            "format": "string"
+          },
+          "prenom": {
+            "type": "string",
+            "format": "string"
+          },
+          "password": {
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      },
+      "registerRequest": {
+        "type": "object",
+        "properties": {
+          "nom": {
+            "type": "string",
+            "format": "string"
+          },
+          "prenom": {
+            "type": "string",
+            "format": "string"
+          },
+          "password": {
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "number"
+          }
+        }
+      },
+      "registerRequests": {
+        "type": "object",
+        "properties": {
+          "registerRequest": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/registerRequest"
+            }
+          }
+        }
+      }
+    }
+  }
+}
