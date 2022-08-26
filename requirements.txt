@@ -44,7 +44,7 @@ executing==0.8.3
 fastapi==0.75.2
 fields==5.0.0
 filelock==3.6.0
-Flask==1.1.4
+Flask==2.0
 Flask-API==3.0.post1
 Flask-AppBuilder==3.4.5
 Flask-Babel==2.0.0
