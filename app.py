@@ -2,8 +2,8 @@
 
 import argparse
 import os
-from flask import Flask, jsonify, make_response
-# from flask_cors import CORS
+from flask import Flask, jsonify, make_response,render_template
+from flask_cors import CORS
 from flask_swagger_ui import get_swaggerui_blueprint
 from routes import request_api
 
@@ -17,12 +17,18 @@ def home():
 
 ### swagger specific ###
 SWAGGER_URL = '/swagger'
-API_URL = '/static/swagger.json'
+API_URL = '/static/swagger.json',
+autorizations= {"Bearer": {"type": "apiKey", "in": "header", "name": "Authorization"}},
 SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
+    
+   
+    
+    
     config={
-        'app_name': "Seans-Python-Flask-REST-Boilerplate"
+        'app_name': "Seans-Python-Flask-REST-Boilerplate",
+        
     }
 )
 APP.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
