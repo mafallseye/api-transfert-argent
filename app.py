@@ -17,8 +17,9 @@ def home():
 
 ### swagger specific ###
 SWAGGER_URL = '/swagger'
+API_URL2 = "/api/v1/"
 API_URL = '/static/swagger.json',
-autorizations= {"Bearer": {"type": "apiKey", "in": "header", "name": "Authorization"}},
+# autorizations= {"Bearer": {"type": "apiKey", "in": "header", "name": "Authorization"}},
 SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
@@ -36,6 +37,7 @@ APP.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 
 APP.register_blueprint(request_api.get_blueprint())
+
 
 
 @APP.errorhandler(400)

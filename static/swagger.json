@@ -27,7 +27,7 @@
       "get": {
         "security": [
           {
-            "unauthenticated": []
+            "bearerAuth": []
           }
         ],
         "tags": ["register Request"],
@@ -157,6 +157,75 @@
           },
           "400": {
             "description": "Failed. Bad post data."
+          }
+        }
+      }
+    },
+    "/sendMessage": {
+      "post": {
+        "tags": ["sent messages"],
+        "summary": "sent messages request to autheur",
+        "requestBody": {
+          "description": "messages Request Post Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessagesRequestPostBody"
+              }
+            }
+          }
+        },
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    },
+    "/senderMoney/{phoneNumber}": {
+      "parameters": [
+        {
+          "name": "phoneNumber",
+          "in": "path",
+          "required": true,
+          "description": "ID of the cat that we want to match",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Sender Information"],
+        "summary": "sent information of expediteur ",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "phoneNumber",
+            "required": true,
+            "description": "register Request phoneNumber",
+            "schema": {
+              "$ref": "#/components/schemas/_id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/SendMoneyRequestPostBody"
+            }
+          },
+          "400": {
+            "description": "Failed. Misunderstood Request."
+          },
+          "404": {
+            "description": "Failed. register request not found."
           }
         }
       }
@@ -300,10 +369,6 @@
       "registersRequestPostBody": {
         "type": "object",
         "properties": {
-          "_id": {
-            "type": "string",
-            "format": "string"
-          },
           "lastname": {
             "type": "string",
             "format": "string"
@@ -320,6 +385,10 @@
             "type": "string",
             "format": "email"
           },
+          "phoneNumber": {
+            "type": "string",
+            "format": "string"
+          },
           "pays": {
             "type": "string",
             "format": "string"
@@ -331,6 +400,26 @@
           "identity": {
             "type": "string",
             "format": "string"
+          },
+          "room": {
+            "type": "string",
+            "format": " string",
+            "example": "identity or passport"
+          },
+
+          "numberRoom": {
+            "type": "string",
+            "format": "string"
+          },
+          "conditionWithdrawal": {
+            "type": "string",
+            "format": "string",
+            "example": "speces or carte bancaire"
+          },
+          "sentmail": {
+            "type": "string",
+            "format": "string",
+            "example": "yes or no"
           }
         }
       },
@@ -354,6 +443,85 @@
           "email": {
             "type": "string",
             "format": "email"
+          }
+        }
+      },
+      "MessagesRequestPostBody": {
+        "type": "object",
+        "properties": {
+          "fullname": {
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+
+          "subject": {
+            "type": "string",
+            "format": "string"
+          },
+          "messages": {
+            "type": "string",
+            "format": "string"
+          }
+        }
+      },
+      "SendMoneyRequestPostBody": {
+        "type": "object",
+        "properties": {
+          "firstname": {
+            "type": "string",
+            "format": "string"
+          },
+          "lastname": {
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "format": "number"
+          },
+          "Birthday": {
+            "type": "string",
+            "format": "string"
+          },
+          "natinality": {
+            "type": "string",
+            "format": "string"
+          },
+          "ville": {
+            "type": "string",
+            "format": "string"
+          },
+          "pays": {
+            "type": "string",
+            "format": "string"
+          },
+          "room": {
+            "type": "string",
+            "format": " string",
+            "example": "identity or passport"
+          },
+
+          "numberRoom": {
+            "type": "string",
+            "format": "string"
+          },
+          "Condition withdrawal": {
+            "type": "string",
+            "format": "string",
+            "example": "speces or carte bancaire"
+          },
+          "sentmail ": {
+            "type": "string",
+            "format": "string",
+            "example": "yes or no"
           }
         }
       },
